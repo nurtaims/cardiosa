@@ -17,6 +17,8 @@ const styles = {
 
 function LineChartComponent(props) {
     const { classes, data, username } = props
+    var lastElement = data.slice(-1)[0]
+    var color = lastElement['rate']>120 || lastElement['rate']<60 ? 'red' : '#8884d8'
     return(
         <Card className={classes.card}>
             <CardHeader
@@ -29,7 +31,7 @@ function LineChartComponent(props) {
                     <YAxis/>
                     <Tooltip/>
                     <Legend />
-                    <Line type="monotone" dataKey="rate" stroke="#8884d8" activeDot={{r: 10}}/>
+                    <Line type="monotone" dataKey="rate" stroke={color} activeDot={{r: 10}}/>
                 </LineChart>
             </CardContent>
         </Card>
